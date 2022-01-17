@@ -29,9 +29,10 @@ class PenumpangController extends Controller
      */
     public function create()
     {
-        return view('layouts.kereta.create', [
+        return view('layouts.penumpang.create', [
             'dataasal' => Asal::all(),
-            'datatujuan' => Tujuan::all()
+            'datatujuan' => Tujuan::all(),
+            'datakereta' => Kereta::all()
         ]);
     }
 
@@ -43,7 +44,28 @@ class PenumpangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id' => 'unique:users',
+            'tanggal_berangkat' => 'required|date',
+            'jumlah_penumpang' => 'required',
+            'kereta_id' => 'required',
+            'asal_id' => 'required',
+            'tujuan_id' => 'required',
+            'kelas' => 'required',
+        ],['kereta_id.required' => 'Armada Harus Di isi!.'],
+        ['asal_id.required' => 'Kota Asal Harus Di isi!.'],
+        ['tujuan_id.required' => 'Kota Tujuan Harus Di isi!.']);
+
+        $penumpang = new Penumpang();
+        $penumpang->user_id = auth()->user()->id;
+        $penumpang->tanggal_berangkat = $request->tanggal_berangkat;
+        $penumpang->jumlah_penumpang = $request->jumlah_penumpang;
+        $penumpang->kereta_id = $request->kereta_id;
+        $penumpang->asal_id = $request->asal_id;
+        $penumpang->tujuan_id = $request->tujuan_id;
+        $penumpang->kelas = $request->kelas;
+        $penumpang->save();
+        return redirect()->route('transaksi.index');
     }
 
     /**
@@ -86,8 +108,9 @@ class PenumpangController extends Controller
      * @param  \App\Models\Penumpang  $penumpang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Penumpang $penumpang)
+    public function destroy($id)
     {
-        //
+        Penumpang::findOrFail($id)->delete();
+        return redirect()->route('transaksi.index');
     }
 }

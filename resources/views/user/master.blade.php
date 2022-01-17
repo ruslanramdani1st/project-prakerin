@@ -52,16 +52,15 @@
             </div>
             <!-- End of Main Content -->
 
+            <!-- Footer -->
+            @include('include.footer')
+            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
-
-    <!-- Footer -->
-        @include('include.footer')
-    <!-- End of Footer -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">

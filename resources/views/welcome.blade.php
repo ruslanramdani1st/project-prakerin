@@ -47,7 +47,6 @@
 <body class="bg-light">
     <nav class="navbar navbar-expand-sm bg-success navbar-black">
         <!-- Brand/logo -->
-        {{-- <a class="navbar-brand" href="#">Logo</a> --}}
         <a class="navbar-brand">
             <img src="img/keretaapi.png" style="width:50px;" alt="Avatar Logo" class="rounded-pill">
         </a>
@@ -55,20 +54,12 @@
 
         @if (Route::has('login'))
             @auth
-                @if (Auth::user()->role == 'admin')
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="{{ route('DashboardAdmin') }}" :active="request()->routeIs('DashboardAdmin')" class="nav-link btn btn-success">Dashboard</a>
-                        </li>
-                    </ul>
-                @else
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="{{ route('DashboardPenumpang') }}" :active="request()->routeIs('DashboardPenumpang')" class="nav-link btn btn-success">Dashboard</a>
-                        </li>
-                    </ul>
-                @endif
-            @else
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="{{ route('DashboardPenumpang') }}" :active="request()->routeIs('DashboardPenumpang')" class="nav-link btn btn-primary">Dashboard</a>
+                    </li>
+                </ul>
+        @else
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item ml-2">
                         <i class="material-icons" aria-hidden="true"></i>

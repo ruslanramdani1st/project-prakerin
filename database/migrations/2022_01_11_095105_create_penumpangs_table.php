@@ -15,11 +15,12 @@ class CreatePenumpangsTable extends Migration
     {
         Schema::create('penumpangs', function (Blueprint $table) {
             $table->id();
-            $table->string('jumlah_penumpang');
             $table->foreignId('user_id');
+            $table->date('tanggal_berangkat');
+            $table->string('jumlah_penumpang');
             $table->foreignId('kereta_id');
-            $table->string('asal_id');
-            $table->string('tujuan_id');
+            $table->foreignId('asal_id');
+            $table->foreignId('tujuan_id');
             $table->string('kelas');
             $table->timestamps();
 

@@ -33,13 +33,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/Laporan','App\Http\Contro
 
 // Admin Controller
 Route::middleware(['auth:sanctum', 'verified'])->get('Admin/Penumpang', 'App\Http\Controllers\AdminController@index')->name('DataPengguna');
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', 'App\Http\Controllers\AdminController@dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('Admin/Dashboard', 'App\Http\Controllers\AdminController@dashboard', function () {
     return view('layouts.admin.dashboard');
 })->name('DashboardAdmin');
 
 // Penumpang Controller
 Route::middleware(['auth:sanctum', 'verified'])->resource('penumpang', PenumpangController::class);
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', 'App\Http\Controllers\AdminController@dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('Penumpang/Dashboard', 'App\Http\Controllers\AdminController@dashboardPenumpang', function () {
     return view('layouts.user.dashboard');
 })->name('DashboardPenumpang');
 

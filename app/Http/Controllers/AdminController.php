@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kereta;
+use App\Models\User;
 use App\Models\Penumpang;
 use App\Models\Transaksi;
 use Illuminate\Support\Facades\Auth;
@@ -27,20 +29,36 @@ class AdminController extends Controller
         $role=Auth::user()->role;
 
         if($role=='admin') {
-            return view('layouts.admin.dashboard');
+            return view('layouts.admin.dashboard',
+            [
+                'penumpang' => User::where('role', 'penumpang')->count(),
+                'kereta' => Kereta::all()->count(),
+                // 'uraian' => Uraian::all()->count(),
+                // 'pengguna' => Pengguna::all()->count(),
+            ]);
         } else {
-            return view('layouts.user.dashboard');
+            return view('layouts.user.dashboard',
+            [
+                // 'kegiatan' => Kegiatan::all()->count(),
+                // 'uraian' => Uraian::all()->count(),
+                // 'pengguna' => Pengguna::all()->count(),
+            ]);
         }
     }
 
     public function dashboard()
     {
-        $pengguna = DB::table('users')->where('role', 'pengguna')->count();
+        $penumpang = DB::table('users')->where('role', 'penumpang')->count();
         $kereta = DB::table('keretas')->count();
         // $pendapatan = DB::table('#')->count();
         // $pengguna = DB::table('penggunas')->count();
         // dd($pegawai, $kegiatan, $uraian, $pengguna);
-        return view('layouts.admin.dashboard', compact('pengguna','kereta'));
+        return view('layouts.admin.dashboard', compact('penumpang','kereta'));
+    }
+
+    public function dashboardPenumpang()
+    {
+        return view('layouts.user.dashboard');
     }
 
     public function laporan()
