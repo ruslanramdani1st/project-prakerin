@@ -23,8 +23,4 @@ class Asal extends Model
     	return $this->belongsToMany(Kereta::class,'asal_id');
     }
 
-    public function penumpang()
-    {
-    	return $this->belongsToMany(Penumpang::class,'asal_id');
-    }
 }

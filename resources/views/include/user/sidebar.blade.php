@@ -24,9 +24,15 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="{{route('penumpang.index')}}">
+        <a class="nav-link" href="{{route('jadwalKereta')}}">
             <i class="fas fa-fw fa-calendar-check"></i>
             <span>Jadwal Keberangkatan</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('penumpang.index')}}">
+            <i class="fas fa-fw fa-ticket-alt"></i>
+            <span>Pesanan Tiket</span></a>
     </li>
 
     <li class="nav-item">

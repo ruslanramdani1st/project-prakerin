@@ -18,8 +18,4 @@ class Tujuan extends Model
     	return $this->belongsToMany(Kereta::class,'tujuan_id');
     }
 
-    public function penumpang()
-    {
-    	return $this->belongsToMany(Penumpang::class,'tujuan_id');
-    }
 }

@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenumpangController;
 use App\Http\Controllers\AsalController;
 use App\Http\Controllers\TujuanController;
-// use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KeretaController;
-// use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\TransaksiController;
 
 /*
@@ -39,6 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('Admin/Dashboard', 'App\Htt
 
 // Penumpang Controller
 Route::middleware(['auth:sanctum', 'verified'])->resource('penumpang', PenumpangController::class);
+Route::middleware(['auth:sanctum', 'verified'])->get('Penumpang/Jadwal_Kereta', 'App\Http\Controllers\AdminController@dataJadwal')->name('jadwalKereta');
 Route::middleware(['auth:sanctum', 'verified'])->get('Penumpang/Dashboard', 'App\Http\Controllers\AdminController@dashboardPenumpang', function () {
     return view('layouts.user.dashboard');
 })->name('DashboardPenumpang');
@@ -49,14 +48,8 @@ Route::middleware(['auth:sanctum', 'verified'])->resource('/asal', AsalControlle
 // Tabel Tujuan
 Route::middleware(['auth:sanctum', 'verified'])->resource('/tujuan', TujuanController::class);
 
-// // Tabel Jurusan
-// Route::middleware(['auth:sanctum', 'verified'])->resource('/jurusan', JurusanController::class);
-
 // Tabel Kereta
 Route::middleware(['auth:sanctum', 'verified'])->resource('/kereta', KeretaController::class);
-
-// // Tabel Jadwal
-// Route::resource('/jadwal', JadwalController::class);
 
 // Tabel Transaksi
 Route::middleware(['auth:sanctum', 'verified'])->resource('/transaksi', TransaksiController::class);

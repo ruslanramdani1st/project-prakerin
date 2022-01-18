@@ -19,24 +19,12 @@ class Penumpang extends Model
         'nama_penumpang',
         'user_id',
         'kereta_id',
-        'asal_berangkat',
-        'tujuan_berangkat',
         'kelas'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class , 'user_id');
-    }
-
-    public function asal()
-    {
-        return $this->belongsTo(Asal::class, 'asal_id');
-    }
-
-    public function tujuan()
-    {
-        return $this->belongsTo(Tujuan::class, 'tujuan_id');
     }
 
     public function kereta()

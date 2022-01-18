@@ -1,17 +1,17 @@
-@extends('admin.master')
+@extends('user.master')
 
-@section('titleAdmin')
-ADMIN | DudeLoka
+@section('titleUser')
+DudeLoka
 @endsection
 
-@section('contentAdmin')
+@section('contentUser')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-header">Data Kereta Api DudeLoka
-                            <a href="{{ route('kereta.index') }}" class="btn btn-sm btn-primary float-right">Kembali</a>
+                        <div class="card-header">
+                            Data Kereta Api DudeLoka
                         </div>
                         <br>
                         <div class="table-responsive">
