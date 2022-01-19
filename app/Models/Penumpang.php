@@ -31,4 +31,9 @@ class Penumpang extends Model
     {
         return $this->belongsTo(Kereta::class, 'kereta_id');
     }
+
+    public function pemesanan()
+    {
+        return $this->hasMany(Pemesanan::class, 'penumpang_id');
+    }
 }
