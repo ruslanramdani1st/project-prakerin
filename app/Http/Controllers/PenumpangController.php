@@ -102,6 +102,6 @@ class PenumpangController extends Controller
     public function destroy($id)
     {
         Penumpang::findOrFail($id)->delete();
-        return redirect()->route('pengguna.index');
+        return redirect()->route('penumpang.index');
     }
 }

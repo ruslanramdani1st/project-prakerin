@@ -37,8 +37,8 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{route('transaksi.index')}}">
-            <i class="fas fa-fw fa-address-book"></i>
-            <span>Data Booking</span></a>
+            <i class="fas fa-fw fa-credit-card"></i>
+            <span>Pembayaran Tiket</span></a>
     </li>
 
     <!-- Divider -->

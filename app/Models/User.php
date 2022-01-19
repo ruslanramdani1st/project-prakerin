@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Penumpang;
+use App\Models\Transaksi;
 
 class User extends Authenticatable
 {
@@ -66,5 +67,10 @@ class User extends Authenticatable
     public function penumpang()
     {
         return $this->hasOne(Penumpang::class, 'user_id');
+    }
+
+    public function transaksi()
+    {
+        return $this->hasOne(Transaksi::class, 'user_id');
     }
 }

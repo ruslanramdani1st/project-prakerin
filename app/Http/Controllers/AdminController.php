@@ -33,8 +33,6 @@ class AdminController extends Controller
             [
                 'penumpang' => User::where('role', 'penumpang')->count(),
                 'kereta' => Kereta::all()->count(),
-                // 'uraian' => Uraian::all()->count(),
-                // 'pengguna' => Pengguna::all()->count(),
             ]);
         } else {
             return view('layouts.user.dashboard',
@@ -73,23 +71,4 @@ class AdminController extends Controller
         $jadwal = Kereta::all();
         return view('layouts.penumpang.jadwal', compact('jadwal'));
     }
-
-
-
-    // public function harga()
-    // {
-    //     $harga = DB::table('keretas')->where('harga')->get();
-    //     $k_eksekutif = 20000;
-    //     $k_bisnis = 15000;
-    //     $k_ekonomi = 10000;
-    //     $k_premium = 5000;
-
-    //     // PERHITUNGAN
-    //     $kelas_kesekutif = $harga + $k_eksekutif;
-    //     $kelas_bisnis = $harga + $k_bisnis;
-    //     $kelas_ekonomi = $harga + $k_ekonomi;
-    //     $kelas_premium = $harga + $k_premium;
-    //     return view('layouts.transaksi.show', compact('kelas_kesekutif','kelas_bisnis','kelas_ekonomi','kelas_premium'));
-    // }
-
 }

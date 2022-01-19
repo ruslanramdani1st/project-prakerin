@@ -43,7 +43,10 @@ DudeLoka
                                     <select class="form-control" name="kereta_id" id="exampleFormControlSelect2">
                                         <option value="">-- Pilih Armada --</option>
                                         @foreach ($datakereta as $kereta)
-                                            <option value="{{$kereta->id}}" {{ old('kereta_id') == $kereta->id ? 'selected' : null }}>{{$kereta->nama_kereta}}</option>
+                                            <option class="col-md-3" value="{{$kereta->id}}" {{ old('kereta_id') == $kereta->id ? 'selected' : null }}>
+                                                {{$kereta->nama_kereta}} <br>
+                                                ({{$kereta->asal->kota_asal}} - {{$kereta->tujuan->kota_tujuan}})
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>

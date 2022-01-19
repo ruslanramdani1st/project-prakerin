@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransaksisTable extends Migration
+class CreatePemesanansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,17 @@ class CreateTransaksisTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaksis', function (Blueprint $table) {
+        Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('penumpang_id');
-            $table->foreignId('pemesanan_id');
-            $table->string('bank_pengirim');
-            $table->string('bank_tujuan');
-            $table->string('nama_rekening');
-            $table->integer('nomor_rekening');
-            $table->integer('jumlah_transfer');
-            $table->string('bukti_pembayaran');
+            $table->string('nama_penumpang');
+            $table->integer('nik');
+            $table->integer('no_telp');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('penumpang_id')->references('id')->on('penumpangs')->onDelete('cascade');
-            $table->foreign('pemesanan_id')->references('id')->on('pemesanans')->onDelete('cascade');
         });
     }
 
@@ -39,6 +34,6 @@ class CreateTransaksisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaksis');
+        Schema::dropIfExists('pemesanans');
     }
 }

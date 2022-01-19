@@ -5,6 +5,7 @@ use App\Http\Controllers\PenumpangController;
 use App\Http\Controllers\AsalController;
 use App\Http\Controllers\TujuanController;
 use App\Http\Controllers\KeretaController;
+use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\TransaksiController;
 
 /*
@@ -50,6 +51,9 @@ Route::middleware(['auth:sanctum', 'verified'])->resource('/tujuan', TujuanContr
 
 // Tabel Kereta
 Route::middleware(['auth:sanctum', 'verified'])->resource('/kereta', KeretaController::class);
+
+// Tabel Pemesanan
+Route::middleware(['auth:sanctum', 'verified'])->resource('/pemesanan', PemesananController::class);
 
 // Tabel Transaksi
 Route::middleware(['auth:sanctum', 'verified'])->resource('/transaksi', TransaksiController::class);

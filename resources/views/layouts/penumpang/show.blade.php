@@ -7,58 +7,70 @@ DudeLoka
 @section('contentUser')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-header">
-                            Data Kereta Api DudeLoka
+                            <div class="d-flex justify-content-between">
+                                <div class="justify-content-start">
+                                    <h4> Informasi Jadwal Keberangkatan Kereta Api DudeLoka </h4>
+                                </div>
+                                <div class="justify-content-between">
+                                    <a href="{{ route('pemesanan.create')}}" class="btn btn-sm btn-primary">LANJUTKAN</a>
+                                </div>
+                            </div>
+
                         </div>
                         <br>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <label for="#">
-                                    Nomor Polisi :
-                                </label>
-                                {{$kereta->nomor_polisi}}
-                                <br>
+                        <table class="table table-hover" id="example">
+                            <thead class="thead-light">
+                                <tr align="center">
+                                    <th scope="col">Tanggal keberangkat</th>
+                                    <th scope="col">Kota Asal</th>
+                                    <th scope="col">Kota Tujuan</th>
+                                    <th scope="col">Harga Tiket</th>
+                                    <th scope="col">Kelas</th>
+                                    <th scope="col">Kereta</th>
+                                    <th scope="col">Jumlah Penumpang</th>
+                                    <th scope="col">Total Harga</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr scope="row" align="center">
+                                    <td>
+                                        {{\Carbon\Carbon::parse($penumpang->tanggal_berangkat)->format('d F Y')}}
+                                    </td>
 
-                                <label for="#">
-                                    Nama Kereta :
-                                </label>
-                                {{$kereta->nama_kereta}}
-                                <br>
+                                    <td>
+                                        {{$penumpang->kereta->asal->kota_asal}}
+                                    </td>
 
-                                <label for="#">
-                                    Waktu Keberangkatan :
-                                </label>
-                                {{\Carbon\Carbon::parse($kereta->tanggal_berangkat)->format('d F Y')}}
-                                <br>
+                                    <td>
+                                        {{$penumpang->kereta->tujuan->kota_tujuan}}
+                                    </td>
 
-                                <label for="#">
-                                    Kota Asal :
-                                </label>
-                                {{$kereta->asal->kota_asal}}
-                                <br>
+                                    <td>
+                                        @currency($penumpang->kereta->harga),-
+                                    </td>
 
-                                <label for="#">
-                                    Kota Tujuan :
-                                </label>
-                                {{$kereta->tujuan->kota_tujuan}}
-                                <br>
+                                    <td>
+                                        {{$penumpang->kelas}}
+                                    </td>
 
-                                <label for="#">
-                                    Harga Tiket :
-                                </label>
-                                {{$kereta->harga}}
-                                <br>
+                                    <td>
+                                        {{$penumpang->kereta->nama_kereta}} <br> ({{$penumpang->kereta->nomor_polisi}})
+                                    </td>
 
-                                <label for="#">
-                                    Dibuat Pada :
-                                </label>
-                                {{$kereta->created_at->format('l, d F Y')}}
-                                <br>
-                            </table>
-                        </div>
+                                    <td>
+                                        {{$penumpang->jumlah_penumpang}} Orang
+                                    </td>
+
+                                    <td>
+                                        @currency($penumpang->kereta->harga * $penumpang->jumlah_penumpang),-
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
