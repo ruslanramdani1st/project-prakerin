@@ -17,18 +17,17 @@ class CreateTransaksisTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('penumpang_id');
-            $table->foreignId('pemesanan_id');
             $table->string('bank_pengirim');
             $table->string('bank_tujuan');
             $table->string('nama_rekening');
-            $table->integer('nomor_rekening');
+            $table->string('nomor_rekening');
             $table->integer('jumlah_transfer');
+            $table->string('proses_pembayaran')->default("Sedang Proses");
             $table->string('bukti_pembayaran');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('penumpang_id')->references('id')->on('penumpangs')->onDelete('cascade');
-            $table->foreign('pemesanan_id')->references('id')->on('pemesanans')->onDelete('cascade');
         });
     }
 

@@ -30,11 +30,10 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-        aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-road"></i>
-        <span>Jurusan</span>
-    </a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-road"></i>
+            <span>Jurusan</span>
+        </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{route('asal.index')}}">Asal Berangkat</a>
@@ -52,7 +51,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{route('laporanTransaksi')}}">
             <i class="fas fa-fw fa-address-book"></i>
             <span>Data Booking</span></a>
     </li>

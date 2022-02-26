@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kereta;
 use App\Models\Transaksi;
 use App\Models\Penumpang;
-use App\Models\Kereta;
-use App\Models\Asal;
-use App\Models\Tujuan;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -18,9 +16,9 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $penumpang = Penumpang::where('user_id', auth()->user()->id)->get();
-        // $kereta = Kereta::where('user_id', auth()->user()->id)->get();
-        return view('layouts.transaksi.index', compact('penumpang'));
+        $transaksi = Transaksi::where('user_id', auth()->user()->id)->get();
+        // $penumpang = Penumpang::where('penumpang_id', auth()->user()->id)->get();
+        return view('layouts.transaksi.index', compact('transaksi'));
     }
 
     /**
@@ -30,10 +28,9 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        return view('layouts.penumpang.create', [
-            'dataasal' => Asal::all(),
-            'datatujuan' => Tujuan::all(),
-            'datakereta' => Kereta::all()
+        return view('layouts.transaksi.create', [
+            'penumpang' => Penumpang::all(),
+            'kereta' => Kereta::all()
         ]);
     }
 
@@ -45,7 +42,33 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'user_id' => 'unique:users',
+            'penumpang_id' => 'unique:penumpangs',
+            'bank_pengirim' => 'required',
+            'bank_tujuan' => 'required',
+            'nama_rekening' => 'required|string|max:50',
+            'nomor_rekening' => 'required',
+            'jumlah_transfer' => 'required',
+            'bukti_pembayaran' => 'required|image|file|max:2048',
+        ],['bank_pengirim.required' => 'Bank Pengirim Harus Di isi!.',
+        'bank_tujuan.required' => 'Bank Tujuan Harus Di isi!.']);
+
+        $transaksi = new Transaksi();
+        $transaksi->user_id = auth()->user()->id;
+        $transaksi->penumpang_id = auth()->user()->id;
+        $transaksi->bank_pengirim = $request->bank_pengirim;
+        $transaksi->bank_tujuan = $request->bank_tujuan;
+        $transaksi->nama_rekening = $request->nama_rekening;
+        $transaksi->nomor_rekening = $request->nomor_rekening;
+        $transaksi->jumlah_transfer = $request->jumlah_transfer;
+        if ($request->file('bukti_pembayaran')) {
+            $transaksi->bukti_pembayaran = $request->file('bukti_pembayaran')->store('transaksi');
+        }
+        $transaksi->save();
+        return redirect()->route('transaksi.index');
+
     }
 
     /**

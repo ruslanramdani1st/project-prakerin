@@ -18,7 +18,7 @@ class CreatePenumpangsTable extends Migration
             $table->foreignId('user_id');
             $table->date('tanggal_berangkat');
             $table->foreignId('kereta_id');
-            $table->string('jumlah_penumpang');
+            $table->integer('jumlah_penumpang');
             $table->string('kelas');
             $table->timestamps();
 

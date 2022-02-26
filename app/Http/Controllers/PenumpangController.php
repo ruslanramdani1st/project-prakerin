@@ -28,7 +28,7 @@ class PenumpangController extends Controller
     public function create()
     {
         return view('layouts.penumpang.create', [
-            'datakereta' => Kereta::all()
+            'datakereta' => Kereta::all(),
         ]);
     }
 
@@ -46,7 +46,9 @@ class PenumpangController extends Controller
             'kereta_id' => 'required',
             'jumlah_penumpang' => 'required',
             'kelas' => 'required',
-        ],['kereta_id.required' => 'Armada Harus Di isi!.']);
+        ],['kereta_id.required' => 'Armada Harus Di isi!.',
+        'jumlah_penumpang.required' => 'Jumlah Penumpang Harus Di isi!.',
+        'kelas.required' => 'Kelas Harus Di isi!.']);
 
         $penumpang = new Penumpang();
         $penumpang->user_id = auth()->user()->id;

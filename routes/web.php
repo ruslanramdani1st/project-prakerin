@@ -39,9 +39,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('Admin/Dashboard', 'App\Htt
 // Penumpang Controller
 Route::middleware(['auth:sanctum', 'verified'])->resource('penumpang', PenumpangController::class);
 Route::middleware(['auth:sanctum', 'verified'])->get('Penumpang/Jadwal_Kereta', 'App\Http\Controllers\AdminController@dataJadwal')->name('jadwalKereta');
-Route::middleware(['auth:sanctum', 'verified'])->get('Penumpang/Dashboard', 'App\Http\Controllers\AdminController@dashboardPenumpang', function () {
-    return view('layouts.user.dashboard');
-})->name('DashboardPenumpang');
 
 // Tabel Asal
 Route::middleware(['auth:sanctum', 'verified'])->resource('/asal', AsalController::class);
@@ -52,8 +49,8 @@ Route::middleware(['auth:sanctum', 'verified'])->resource('/tujuan', TujuanContr
 // Tabel Kereta
 Route::middleware(['auth:sanctum', 'verified'])->resource('/kereta', KeretaController::class);
 
-// Tabel Pemesanan
-Route::middleware(['auth:sanctum', 'verified'])->resource('/pemesanan', PemesananController::class);
-
 // Tabel Transaksi
 Route::middleware(['auth:sanctum', 'verified'])->resource('/transaksi', TransaksiController::class);
+
+// Laporan Transaksi
+Route::middleware(['auth:sanctum', 'verified'])->get('Admin/Laporan', 'App\Http\Controllers\AdminController@laporanTiket')->name('laporanTransaksi');

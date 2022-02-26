@@ -35,11 +35,8 @@ class AdminController extends Controller
                 'kereta' => Kereta::all()->count(),
             ]);
         } else {
-            return view('layouts.user.dashboard',
-            [
-                // 'kegiatan' => Kegiatan::all()->count(),
-                // 'uraian' => Uraian::all()->count(),
-                // 'pengguna' => Pengguna::all()->count(),
+            return view('layouts.penumpang.jadwal',[
+                'jadwal'=> Kereta::all()
             ]);
         }
     }
@@ -54,11 +51,6 @@ class AdminController extends Controller
         return view('layouts.admin.dashboard', compact('penumpang','kereta'));
     }
 
-    public function dashboardPenumpang()
-    {
-        return view('layouts.user.dashboard');
-    }
-
     public function laporan()
     {
         $penumpang = Penumpang::with('users')->get();
@@ -70,5 +62,11 @@ class AdminController extends Controller
     {
         $jadwal = Kereta::all();
         return view('layouts.penumpang.jadwal', compact('jadwal'));
+    }
+
+    public function laporanTiket()
+    {
+        $transaksi = Transaksi::all();
+        return view('layouts.admin.laporan', compact('transaksi'));
     }
 }

@@ -32,7 +32,9 @@
                                 <tr scope="row" align="center">
                                     <td>{{$no++}}</td>
                                     <td>{{$data->nama_kereta}} <br>({{$data->nomor_polisi}})</td>
+
                                     <td>{{\Carbon\Carbon::parse($data->tanggal_berangkat)->format('d F Y')}}</td>
+
                                     <td>{{$data->asal->kota_asal}}</td>
                                     <td>{{$data->tujuan->kota_tujuan}}</td>
                                     <td>@currency($data->harga),-</td>
