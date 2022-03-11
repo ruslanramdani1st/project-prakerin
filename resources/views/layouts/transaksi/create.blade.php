@@ -74,6 +74,7 @@ DudeLoka
                                 </select>
                             </div>
 
+                            {{-- @currency($penumpang->kereta->harga * $penumpang->jumlah_penumpang),- --}}
                             <div class="form-group col-md-4">
                                 <fieldset disabled>
                                     <label for="disabledTextInput">Total Pembayaran</label>

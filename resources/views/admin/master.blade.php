@@ -14,9 +14,7 @@
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
@@ -29,14 +27,14 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-            @include('include.admin.sidebar')
+        @include('include.admin.sidebar')
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Topbar -->
-                @include('include.topbar')
+            @include('include.topbar')
             <!-- End of Topbar -->
 
             <!-- Main Content -->
@@ -52,7 +50,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-                @include('include.footer')
+            @include('include.footer')
             <!-- End of Footer -->
 
         </div>
@@ -67,8 +65,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -86,8 +83,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a class="btn btn-primary" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
+                        <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         this.closest('form').submit();">Keluar</a>
                     </form>
                 </div>
@@ -117,6 +113,7 @@
         $(document).ready(function() {
             $('#example').DataTable();
         });
+
     </script>
 
 </body>
