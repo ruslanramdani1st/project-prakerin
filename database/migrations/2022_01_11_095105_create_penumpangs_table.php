@@ -20,6 +20,7 @@ class CreatePenumpangsTable extends Migration
             $table->foreignId('kereta_id');
             $table->integer('jumlah_penumpang');
             $table->string('kelas');
+            $table->string('total');
             $table->timestamps();
 
             $table->foreign('kereta_id')->references('id')->on('keretas')->onDelete('cascade');

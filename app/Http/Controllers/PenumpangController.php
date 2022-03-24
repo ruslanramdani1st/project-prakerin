@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Penumpang;
 use App\Models\Kereta;
+use App\Models\Penumpang;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PenumpangController extends Controller
 {
@@ -46,9 +45,9 @@ class PenumpangController extends Controller
             'kereta_id' => 'required',
             'jumlah_penumpang' => 'required',
             'kelas' => 'required',
-        ],['kereta_id.required' => 'Armada Harus Di isi!.',
-        'jumlah_penumpang.required' => 'Jumlah Penumpang Harus Di isi!.',
-        'kelas.required' => 'Kelas Harus Di isi!.']);
+        ], ['kereta_id.required' => 'Armada Harus Di isi!.',
+            'jumlah_penumpang.required' => 'Jumlah Penumpang Harus Di isi!.',
+            'kelas.required' => 'Kelas Harus Di isi!.']);
 
         $penumpang = new Penumpang();
         $penumpang->user_id = auth()->user()->id;
@@ -56,6 +55,8 @@ class PenumpangController extends Controller
         $penumpang->kereta_id = $request->kereta_id;
         $penumpang->jumlah_penumpang = $request->jumlah_penumpang;
         $penumpang->kelas = $request->kelas;
+        $kereta = Kereta::findOrFail($request->kereta_id);
+        $penumpang->total = $kereta->harga * $request->jumlah_penumpang;
         $penumpang->save();
         return redirect()->route('penumpang.index');
     }

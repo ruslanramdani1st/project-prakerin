@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Penumpang;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
@@ -18,16 +18,16 @@ class Transaksi extends Model
         'penumpang_id',
         'jumlah',
         'no_telp',
-        'total'
+        'total',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class , 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function penumpang()
     {
-        return $this->hasMany(Penumpang::class, 'penumpang_id');
+        return $this->belongsTo(Penumpang::class, 'penumpang_id');
     }
 }

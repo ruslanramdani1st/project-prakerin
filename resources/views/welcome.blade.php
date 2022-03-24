@@ -31,7 +31,7 @@
             fill-opacity: 80%;
         }
 
-        .hr{
+        .hr {
             size: 10px;
         }
 
@@ -53,32 +53,33 @@
         <h4 class="navbar-brand">TIKET KERETA API</h4>
 
         @if (Route::has('login'))
-            @auth
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="{{ route('DashboardPenumpang') }}" :active="request()->routeIs('DashboardPenumpang')" class="nav-link btn btn-primary">Dashboard</a>
-                    </li>
-                </ul>
+        @auth
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="{{ route('DashboardPenumpang') }}" :active="request()->routeIs('DashboardPenumpang')" class="nav-link btn btn-primary">Dashboard</a>
+            </li>
+        </ul>
         @else
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item ml-2">
-                        <i class="material-icons" aria-hidden="true"></i>
-                        <a href="{{ route('login') }}" class="nav-link btn btn-primary">Masuk</a>
-                    </li>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item ml-2">
+                <i class="material-icons" aria-hidden="true"></i>
+                <a href="{{ route('login') }}" class="nav-link btn btn-primary">Masuk</a>
+            </li>
 
-                    @if (Route::has('register'))
-                    <li class="nav-item ml-2">
-                        <a href="{{ route('register') }}" class="nav-link btn btn-secondary">Register</a>
-                    </li>
-                </ul>
-            @endif
+            @if (Route::has('register'))
+            <li class="nav-item ml-2">
+                <a href="{{ route('register') }}" class="nav-link btn btn-secondary">Register</a>
+            </li>
+        </ul>
+        @endif
         @endauth
         @endif
     </nav>
     <br><br>
     <div class="container">
         <center>
-            <h1> SELAMAT DATANG </h1><h2>DI PEMESANAN TIKET KERETA API ONLINE</h2>
+            <h1> SELAMAT DATANG </h1>
+            <h2>DI PEMESANAN TIKET KERETA API ONLINE</h2>
         </center><br>
         <div class="container">
             <div class="row justify-content-center">

@@ -30,7 +30,19 @@ DudeLoka
 
                         <div class="form-row">
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
+                                <label for="exampleFormControlSelect2">Tanggal Keberangkatan</label>
+                                <select class="form-control" name="penumpang_id" id="exampleFormControlSelect2">
+                                    <option value="">-- Pilih Tanggal --</option>
+                                    @foreach ($penumpang as $data)
+                                    <option class="col-md-3" value="{{$data->id}}" {{ old('penumpang_id') == $data->id ? 'selected' : null }}>
+                                        {{\Carbon\Carbon::parse($data->tanggal_berangkat)->format('d F Y')}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
                                 <label for="inputMDEx1">Nama Pengirim</label>
                                 <input type="text" value="{{ old('nama_rekening') }}" name="nama_rekening" class="form-control @error('nama_rekening')is-invalid @enderror" id="inputMDEx1" placeholder="Masukan Nama Pengirim" required>
                                 @error('nama_rekening')
@@ -40,7 +52,7 @@ DudeLoka
                                 @enderror
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="inputMDEx1">Nomor Rekening</label>
                                 <input type="number" value="{{ old('nomor_rekening') }}" name="nomor_rekening" class="form-control @error('nomor_rekening')is-invalid @enderror" id="inputMDEx1" required>
                                 @error('nomor_rekening')
@@ -74,14 +86,6 @@ DudeLoka
                                 </select>
                             </div>
 
-                            {{-- @currency($penumpang->kereta->harga * $penumpang->jumlah_penumpang),- --}}
-                            <div class="form-group col-md-4">
-                                <fieldset disabled>
-                                    <label for="disabledTextInput">Total Pembayaran</label>
-                                    <input type="text" class="form-control" id="disabledTextInput" placeholder="Rp. 147.000,-">
-                                </fieldset>
-                            </div>
-
                             <div class="form-group col-md-4">
                                 <label for="inputMDEx1">Jumlah Transfer</label>
                                 <input type="number" value="{{ old('jumlah_transfer') }}" name="jumlah_transfer" class="form-control @error('jumlah_transfer')is-invalid @enderror" id="inputMDEx1" required>
@@ -104,7 +108,7 @@ DudeLoka
                         <br>
                         <div class="form-floating">
                             <button type="submit" class="w-100 btn btn-lg btn-primary">
-                                Simpan
+                                B A Y A R
                             </button>
                         </div>
                     </form>

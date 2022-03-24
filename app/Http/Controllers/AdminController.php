@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kereta;
-use App\Models\User;
 use App\Models\Penumpang;
 use App\Models\Transaksi;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -26,17 +26,19 @@ class AdminController extends Controller
 
     public function role()
     {
-        $role=Auth::user()->role;
+        $role = Auth::user()->role;
 
-        if($role=='admin') {
+        if ($role == 'admin') {
             return view('layouts.admin.dashboard',
-            [
-                'penumpang' => User::where('role', 'penumpang')->count(),
-                'kereta' => Kereta::all()->count(),
-            ]);
+                [
+                    'penumpang' => User::where('role', 'penumpang')->count(),
+                    'kereta' => Kereta::all()->count(),
+                    'boking' => Transaksi::all()->count(),
+
+                ]);
         } else {
-            return view('layouts.penumpang.jadwal',[
-                'jadwal'=> Kereta::all()
+            return view('layouts.penumpang.jadwal', [
+                'jadwal' => Kereta::all(),
             ]);
         }
     }
@@ -45,18 +47,22 @@ class AdminController extends Controller
     {
         $penumpang = DB::table('users')->where('role', 'penumpang')->count();
         $kereta = DB::table('keretas')->count();
+        $boking = DB::table('transaksis')->count();
         // $pendapatan = DB::table('#')->count();
         // $pengguna = DB::table('penggunas')->count();
         // dd($pegawai, $kegiatan, $uraian, $pengguna);
-        return view('layouts.admin.dashboard', compact('penumpang','kereta'));
+        return view('layouts.admin.dashboard', compact('penumpang', 'kereta', 'boking'));
     }
 
-    public function laporan()
-    {
-        $penumpang = Penumpang::with('users')->get();
-        $transaksi = Transaksi::all();
-        return view('layouts.admin.laporan', compact('penumpang','transaksi'));
-    }
+    // public function laporan()
+    // {
+    //     $penumpang = Penumpang::with('users')->get();
+    //     // $kegiatan = Kegiatan::all();
+
+    //     $transaksi = Transaksi::where('user_id', auth()->user()->id)->get();
+    //     // $laporan = DB::table('users')->where('role', 'penumpang')->get();
+    //     return view('layouts.transaksi.index', compact('transaksi', 'penumpang'));
+    // }
 
     public function dataJadwal()
     {
@@ -66,7 +72,15 @@ class AdminController extends Controller
 
     public function laporanTiket()
     {
+        $laporan = DB::table('users')->where('role', 'penumpang')->get();
+        $penumpang = Penumpang::all();
         $transaksi = Transaksi::all();
-        return view('layouts.admin.laporan', compact('transaksi'));
+        return view('layouts.admin.laporan', compact('laporan', 'penumpang', 'transaksi'));
+    }
+
+    public function getTiket()
+    {
+        $tiket = DB::table('transaksis')->where('proses_pembayaran', 'Sudah Dikonfirmasi')->get();
+        return view('layouts.transaksi.index', compact('tiket'));
     }
 }

@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PenumpangController;
 use App\Http\Controllers\AsalController;
-use App\Http\Controllers\TujuanController;
 use App\Http\Controllers\KeretaController;
-use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\PenumpangController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\TujuanController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +16,7 @@ use App\Http\Controllers\TransaksiController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 // Menampilkan Halaman Index
 Route::get('/', function () {
@@ -25,10 +24,10 @@ Route::get('/', function () {
 });
 
 // ROLE
-Route::middleware(['auth:sanctum', 'verified'])->get('redirects','App\Http\Controllers\AdminController@role');
+Route::middleware(['auth:sanctum', 'verified'])->get('redirects', 'App\Http\Controllers\AdminController@role');
 
 // Laporan
-Route::middleware(['auth:sanctum', 'verified'])->get('/Laporan','App\Http\Controllers\AdminController@laporan');
+Route::middleware(['auth:sanctum', 'verified'])->get('/Laporan', 'App\Http\Controllers\AdminController@laporan');
 
 // Admin Controller
 Route::middleware(['auth:sanctum', 'verified'])->get('Admin/Penumpang', 'App\Http\Controllers\AdminController@index')->name('DataPengguna');
@@ -54,3 +53,6 @@ Route::middleware(['auth:sanctum', 'verified'])->resource('/transaksi', Transaks
 
 // Laporan Transaksi
 Route::middleware(['auth:sanctum', 'verified'])->get('Admin/Laporan', 'App\Http\Controllers\AdminController@laporanTiket')->name('laporanTransaksi');
+
+// Pengambilan Tiket
+Route::middleware(['auth:sanctum', 'verified'])->get('Transaksi/Tiket', 'App\Http\Controllers\AdminController@getTiket')->name('GETiket');

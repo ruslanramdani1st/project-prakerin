@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kereta;
-use App\Models\Transaksi;
 use App\Models\Penumpang;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -17,8 +17,8 @@ class TransaksiController extends Controller
     public function index()
     {
         $transaksi = Transaksi::where('user_id', auth()->user()->id)->get();
-        // $penumpang = Penumpang::where('penumpang_id', auth()->user()->id)->get();
-        return view('layouts.transaksi.index', compact('transaksi'));
+        $penumpang = Penumpang::all();
+        return view('layouts.transaksi.index', compact('transaksi', 'penumpang'));
     }
 
     /**
@@ -30,7 +30,7 @@ class TransaksiController extends Controller
     {
         return view('layouts.transaksi.create', [
             'penumpang' => Penumpang::all(),
-            'kereta' => Kereta::all()
+            'kereta' => Kereta::all(),
         ]);
     }
 
@@ -45,19 +45,19 @@ class TransaksiController extends Controller
         // dd($request->all());
         $request->validate([
             'user_id' => 'unique:users',
-            'penumpang_id' => 'unique:penumpangs',
+            'penumpang_id' => 'required',
             'bank_pengirim' => 'required',
             'bank_tujuan' => 'required',
             'nama_rekening' => 'required|string|max:50',
             'nomor_rekening' => 'required',
             'jumlah_transfer' => 'required',
             'bukti_pembayaran' => 'required|image|file|max:2048',
-        ],['bank_pengirim.required' => 'Bank Pengirim Harus Di isi!.',
-        'bank_tujuan.required' => 'Bank Tujuan Harus Di isi!.']);
+        ], ['bank_pengirim.required' => 'Bank Pengirim Harus Di isi!.',
+            'bank_tujuan.required' => 'Bank Tujuan Harus Di isi!.']);
 
         $transaksi = new Transaksi();
         $transaksi->user_id = auth()->user()->id;
-        $transaksi->penumpang_id = auth()->user()->id;
+        $transaksi->penumpang_id = $request->penumpang_id;
         $transaksi->bank_pengirim = $request->bank_pengirim;
         $transaksi->bank_tujuan = $request->bank_tujuan;
         $transaksi->nama_rekening = $request->nama_rekening;
@@ -77,9 +77,10 @@ class TransaksiController extends Controller
      * @param  \App\Models\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaksi $transaksi)
+    public function show($id)
     {
-        //
+        $transaksi = Transaksi::findOrFail($id);
+        return view('layouts.admin.detailLaporan', compact('transaksi'));
     }
 
     /**
@@ -88,9 +89,10 @@ class TransaksiController extends Controller
      * @param  \App\Models\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaksi $transaksi)
+    public function edit($id)
     {
-        //
+        $transaksi = Transaksi::findOrFail($id);
+        return view('layouts.admin.verifikasiLaporan', compact('transaksi'));
     }
 
     /**
@@ -100,9 +102,16 @@ class TransaksiController extends Controller
      * @param  \App\Models\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaksi $transaksi)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'proses_pembayaran' => 'required',
+        ], ['proses_pembayaran.required' => 'Verifikasi Proses Pembayaran Harus Di isi!.']);
+
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->proses_pembayaran = $request->proses_pembayaran;
+        $transaksi->save();
+        return view('layouts.admin.detailLaporan', compact('transaksi'));
     }
 
     /**
@@ -111,8 +120,9 @@ class TransaksiController extends Controller
      * @param  \App\Models\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaksi $transaksi)
+    public function destroy($id)
     {
-        //
+        Transaksi::findOrFail($id)->delete();
+        return redirect()->route('transaksi.index');
     }
 }

@@ -17,6 +17,7 @@ DudeLoka
                     <thead class="thead-dark">
                         <tr align="center">
                             <th scope="col">No</th>
+                            <th scope="col">Tanggal Berangkat</th>
                             <th scope="col">Nama Pengirim</th>
                             <th scope="col">Bank Pengirim</th>
                             <th scope="col">Armada</th>
@@ -32,14 +33,15 @@ DudeLoka
                         <tr scope="row" align="center">
                             <td>{{$no++}}</td>
                             <td>{{\Carbon\Carbon::parse($data->penumpang->tanggal_berangkat)->format('d F Y')}}</td>
-                            <td>{{$data->penumpang->jumlah_penumpang}}</td>
-                            <td>{{$data->kereta->nama_kereta}} <br> ({{$data->kereta->asal->kota_asal}} - {{$data->kereta->tujuan->kota_tujuan}})</td>
+                            <td>{{$data->nama_rekening}}</td>
+                            <td>{{$data->bank_pengirim}} ke {{$data->bank_tujuan}}</td>
+                            <td>{{$data->penumpang->kereta->nama_kereta}} <br> ({{$data->penumpang->kereta->asal->kota_asal}} - {{$data->penumpang->kereta->tujuan->kota_tujuan}})</td>
                             <td>{{$data->penumpang->kelas}}</td>
-                            <td>@currency($data->penumpang->kereta->harga * $data->penumpang->jumlah_penumpang),-</td>
+                            <td>@currency($data->penumpang->total),-</td>
                             <td>{{$data->proses_pembayaran}}</td>
                             <td>
-                                <a href="{{route('transaksi.edit',$transaksi->id)}}" class="btn btn-success">
-                                    <i class="fas fa-pen"></i>
+                                <a href="{{route('transaksi.show',$data->id)}}" class="btn btn-warning">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                 </a>
                             </td>
                         </tr>

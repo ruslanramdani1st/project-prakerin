@@ -68,7 +68,7 @@ DudeLoka
                                 </td>
 
                                 <td>
-                                    @currency($penumpang->kereta->harga * $penumpang->jumlah_penumpang),-
+                                    @currency($penumpang->total),-
                                 </td>
                             </tr>
                         </tbody>

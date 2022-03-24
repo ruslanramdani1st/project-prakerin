@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Kereta;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Kereta;
-use App\Models\Asal;
-use App\Models\Tujuan;
 
 class Penumpang extends Model
 {
@@ -19,12 +17,13 @@ class Penumpang extends Model
         'nama_penumpang',
         'user_id',
         'kereta_id',
-        'kelas'
+        'kelas',
+        'total',
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class , 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function kereta()
@@ -32,8 +31,8 @@ class Penumpang extends Model
         return $this->belongsTo(Kereta::class, 'kereta_id');
     }
 
-    public function pemesanan()
+    public function transaksi()
     {
-        return $this->hasMany(Pemesanan::class, 'penumpang_id');
+        return $this->hasMany(Transaksi::class, 'penumpang_id');
     }
 }

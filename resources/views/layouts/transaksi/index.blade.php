@@ -31,32 +31,40 @@ DudeLoka
                         <tr scope="row" align="center">
                             <td>{{$no++}}</td>
                             <td>
-                                {{-- {{\Carbon\Carbon::parse($data->penumpang->tanggal_berangkat)->format('d F Y')}} --}}
+                                {{\Carbon\Carbon::parse($data->penumpang->tanggal_berangkat)->format('d F Y')}}
                             </td>
                             <td>
-                                {{-- {{$data->penumpang->jumlah_penumpang}} --}}
+                                {{$data->penumpang->kereta->asal->kota_asal}} - {{$data->penumpang->kereta->tujuan->kota_tujuan}}
                             </td>
                             <td>
-                                {{-- {{$data->kereta->nama_kereta}} <br> ({{$data->kereta->asal->kota_asal}} - {{$data->kereta->tujuan->kota_tujuan}}) --}}
-                            </td>
-                            <td>
-                                {{-- {{$data->penumpang->kelas}} --}}
+                                {{$data->penumpang->jumlah_penumpang}} Orang
                             </td>
                             <td>
                                 @currency($data->penumpang->kereta->harga * $data->penumpang->jumlah_penumpang),-
                             </td>
                             <td>
-                                {{-- {{$data->proses_pembayaran}} --}}
+                                {{$data->proses_pembayaran}}
                             </td>
                             <td>
-                                <form action="{{route('penumpang.destroy', $data->id)}}" method="post">
+                                @if($data->proses_pembayaran == "Sudah Dikonfirmasi")
+                                <a href="{{route('kereta.show',$data->id)}}" class="btn btn-primary">
+                                    <i class="fa fa-print" aria-hidden="true"></i>
+                                </a>
+                                @endif
+
+                                <form action="{{route('transaksi.destroy', $data->id)}}" method="post">
                                     @method('delete')
                                     @csrf
-                                    {{-- <a href="{{ route('penumpang.show')}}" class="btn btn-primary float-right">Bayar</a> --}}
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin menghapus ini?');">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </button>
                                 </form>
+
+                                {{-- @if ($tiket == 'Sudah Dikonfirmasi')
+
+                                @else
+
+                                @endif --}}
                             </td>
                         </tr>
                         @endforeach
