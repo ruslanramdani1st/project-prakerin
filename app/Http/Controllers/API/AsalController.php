@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Asal;
 use Illuminate\Http\Request;
 
-class ApiController extends Controller
+class AsalController extends Controller
 {
     public function index()
     {
@@ -33,8 +34,8 @@ class ApiController extends Controller
         $asal->kota_asal = $request->kota_asal;
         $asal->save();
 
-         // make response JSON
-         return response()->json([
+        // make response JSON
+        return response()->json([
             'success' => true,
             'massage' => 'List Asal Berangkat',
             'data' => $asal,
@@ -45,8 +46,8 @@ class ApiController extends Controller
     {
         $asal = Asal::findOrFail($id);
 
-         // make response JSON
-         return response()->json([
+        // make response JSON
+        return response()->json([
             'success' => true,
             'massage' => 'List Asal Berangkat',
             'data' => $asal,
@@ -71,10 +72,23 @@ class ApiController extends Controller
         $asal->kota_asal = $request->kota_asal;
         $asal->save();
 
-         // make response JSON
-         return response()->json([
+        // make response JSON
+        return response()->json([
             'success' => true,
             'massage' => 'List Ubah Data Asal Berangkat',
+            'data' => $asal,
+        ], 200);
+    }
+
+    public function destroy($id)
+    {
+        $asal = Asal::findOrFail($id);
+        $asal->delete();
+
+        // make response JSON
+        return response()->json([
+            'success' => true,
+            'massage' => 'List Hapus Data Asal Berangkat',
             'data' => $asal,
         ], 200);
     }
