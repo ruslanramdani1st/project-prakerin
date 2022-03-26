@@ -47,7 +47,7 @@ DudeLoka
                             </td>
                             <td>
                                 @if($data->proses_pembayaran == "Sudah Dikonfirmasi")
-                                <a href="{{route('kereta.show',$data->id)}}" class="btn btn-primary">
+                                <a href="{{route('GETiket',$data->id)}}" class="btn btn-primary">
                                     <i class="fa fa-print" aria-hidden="true"></i>
                                 </a>
                                 @endif

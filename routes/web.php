@@ -55,4 +55,4 @@ Route::middleware(['auth:sanctum', 'verified'])->resource('/transaksi', Transaks
 Route::middleware(['auth:sanctum', 'verified'])->get('Admin/Laporan', 'App\Http\Controllers\AdminController@laporanTiket')->name('laporanTransaksi');
 
 // Pengambilan Tiket
-Route::middleware(['auth:sanctum', 'verified'])->get('Transaksi/Tiket', 'App\Http\Controllers\AdminController@getTiket')->name('GETiket');
+Route::middleware(['auth:sanctum', 'verified'])->get('Transaksi/Tiket/{id}', 'App\Http\Controllers\AdminController@getTiket')->name('GETiket');

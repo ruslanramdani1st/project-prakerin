@@ -4,12 +4,16 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Kereta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KeretaController extends Controller
 {
     public function index()
     {
-        $kereta = Kereta::all();
+        $kereta = DB::table('keretas')
+            ->join('asals', 'keretas.asal_id', '=', 'asal_id')
+            ->join('tujuans', 'keretas.tujuan_id', '=', 'tujuan_id')
+            ->select('keretas.nomor_polisi', 'keretas.nama_kereta', 'keretas.tanggal_berangkat', 'asals.kota_asal', 'tujuans.kota_tujuan', 'keretas.harga')->get();
 
         // make response JSON
         return response()->json([

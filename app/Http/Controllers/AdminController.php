@@ -78,9 +78,15 @@ class AdminController extends Controller
         return view('layouts.admin.laporan', compact('laporan', 'penumpang', 'transaksi'));
     }
 
-    public function getTiket()
+    public function getTiket($id)
     {
-        $tiket = DB::table('transaksis')->where('proses_pembayaran', 'Sudah Dikonfirmasi')->get();
-        return view('layouts.transaksi.index', compact('tiket'));
+        $tiket = Transaksi::findOrFail($id);
+        return view('layouts.transaksi.ticket', compact('tiket'));
+
+        //mengambil data dan tampilan dari halaman laporan_pdf
+        //data di bawah ini bisa kalian ganti nantinya dengan data dari database
+        // $tiket = PDF::loadview('layouts.transaksi.tiket', compact('tiket'));
+        // //mendownload laporan.pdf
+        // return $tiket->download('Tiket.pdf');
     }
 }

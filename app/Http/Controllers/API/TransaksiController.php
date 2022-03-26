@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Penumpang;
 use Illuminate\Http\Request;
 
-class PenumpangController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -81,14 +80,6 @@ class PenumpangController extends Controller
      */
     public function destroy($id)
     {
-        $penumpang = Penumpang::findOrFail($id);
-        $penumpang->delete();
-
-        // make response JSON
-        return response()->json([
-            'success' => true,
-            'massage' => 'List Hapus Data Penumpang',
-            'data' => $penumpang,
-        ], 200);
+        //
     }
 }
