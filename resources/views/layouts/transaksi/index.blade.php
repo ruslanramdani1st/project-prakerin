@@ -59,12 +59,6 @@ DudeLoka
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </button>
                                 </form>
-
-                                {{-- @if ($tiket == 'Sudah Dikonfirmasi')
-
-                                @else
-
-                                @endif --}}
                             </td>
                         </tr>
                         @endforeach

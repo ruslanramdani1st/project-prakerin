@@ -6,6 +6,7 @@ use App\Models\Kereta;
 use App\Models\Penumpang;
 use App\Models\Transaksi;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -81,12 +82,12 @@ class AdminController extends Controller
     public function getTiket($id)
     {
         $tiket = Transaksi::findOrFail($id);
-        return view('layouts.transaksi.ticket', compact('tiket'));
+        // return view('layouts.transaksi.ticket', compact('tiket'));
 
         //mengambil data dan tampilan dari halaman laporan_pdf
         //data di bawah ini bisa kalian ganti nantinya dengan data dari database
-        // $tiket = PDF::loadview('layouts.transaksi.tiket', compact('tiket'));
-        // //mendownload laporan.pdf
-        // return $tiket->download('Tiket.pdf');
+        $tiket = PDF::loadview('layouts.transaksi.ticket', ['tiket' => $tiket]);
+        //mendownload laporan.pdf
+        return $tiket->download('Tiket-DudeLoka.pdf');
     }
 }
