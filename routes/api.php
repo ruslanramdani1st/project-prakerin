@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\API\AsalController;
 use App\Http\Controllers\API\KeretaController;
 use App\Http\Controllers\API\TujuanController;
+use App\Http\Controllers\API\PenumpangController;
+use App\Http\Controllers\API\TransaksiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +29,4 @@ Route::resource('ApiAsal', AsalController::class);
 Route::resource('ApiTujuan', TujuanController::class);
 Route::resource('ApiKereta', KeretaController::class);
 Route::resource('ApiPenumpang', PenumpangController::class);
-Route::resource('ApiTujuan', TujuanController::class);
+Route::resource('ApiTransaksi', TransaksiController::class);

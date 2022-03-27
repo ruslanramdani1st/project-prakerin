@@ -18,7 +18,7 @@ class KeretaController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Kereta Api',
+            'massage' => 'Data semua Kereta Api',
             'data' => $kereta,
         ], 200);
     }
@@ -50,7 +50,7 @@ class KeretaController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Kereta Api',
+            'massage' => 'Data Store Kereta Api',
             'data' => $kereta,
         ], 200);
     }
@@ -62,21 +62,21 @@ class KeretaController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Kereta Api',
+            'massage' => 'Data Show Kereta Api',
             'data' => $kereta,
         ], 200);
     }
 
     public function edit($id)
     {
-        // $asal = Asal::findOrFail($id);
+        $kereta = Kereta::findOrFail($id);
 
-        //  // make response JSON
-        //  return response()->json([
-        //     'success' => true,
-        //     'massage' => 'List Kereta Api',
-        //     'data' => $asal,
-        // ], 200);
+         // make response JSON
+         return response()->json([
+            'success' => true,
+            'massage' => 'Data Edit Kereta Api',
+            'data' => $kereta,
+        ], 200);
     }
 
     public function update(Request $request, $id)
@@ -101,7 +101,7 @@ class KeretaController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Ubah Data Kereta Api',
+            'massage' => 'Ubah Data Kereta Api',
             'data' => $kereta,
         ], 200);
     }
@@ -114,7 +114,7 @@ class KeretaController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Hapus Data Asal Berangkat',
+            'massage' => 'Hapus Data Kereta Api',
             'data' => $kereta,
         ], 200);
     }

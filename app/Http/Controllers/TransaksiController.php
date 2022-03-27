@@ -42,7 +42,6 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'user_id' => 'unique:users',
             'penumpang_id' => 'required',

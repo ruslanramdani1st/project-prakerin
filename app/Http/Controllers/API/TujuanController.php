@@ -14,7 +14,7 @@ class TujuanController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List tujuan Berangkat',
+            'massage' => 'Semua data tujuan Berangkat',
             'data' => $tujuan,
         ], 200);
     }
@@ -36,7 +36,7 @@ class TujuanController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List tujuan Berangkat',
+            'massage' => 'Data store tujuan Berangkat',
             'data' => $tujuan,
         ], 200);
     }
@@ -48,21 +48,21 @@ class TujuanController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List tujuan Berangkat',
+            'massage' => 'Data show tujuan Berangkat',
             'data' => $tujuan,
         ], 200);
     }
 
     public function edit($id)
     {
-        // $tujuan = tujuan::findOrFail($id);
+        $tujuan = tujuan::findOrFail($id);
 
-        //  // make response JSON
-        //  return response()->json([
-        //     'success' => true,
-        //     'massage' => 'List tujuan Berangkat',
-        //     'data' => $tujuan,
-        // ], 200);
+         // make response JSON
+         return response()->json([
+            'success' => true,
+            'massage' => 'Data edit tujuan Berangkat',
+            'data' => $tujuan,
+        ], 200);
     }
 
     public function update(Request $request, $id)
@@ -74,7 +74,7 @@ class TujuanController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Ubah Data tujuan Berangkat',
+            'massage' => 'Ubah Data tujuan Berangkat',
             'data' => $tujuan,
         ], 200);
     }
@@ -87,7 +87,7 @@ class TujuanController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Hapus Data tujuan Berangkat',
+            'massage' => 'Hapus Data tujuan Berangkat',
             'data' => $tujuan,
         ], 200);
     }

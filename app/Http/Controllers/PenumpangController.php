@@ -79,9 +79,12 @@ class PenumpangController extends Controller
      * @param  \App\Models\Penumpang  $penumpang
      * @return \Illuminate\Http\Response
      */
-    public function edit(Penumpang $penumpang)
+    public function edit($id)
     {
-        //
+        $penumpang = Penumpang::findOrFail($id);
+        return view('layouts.penumpang.edit', [
+            'datakereta' => kereta::all(),
+        ], compact('penumpang'));
     }
 
     /**
@@ -91,9 +94,31 @@ class PenumpangController extends Controller
      * @param  \App\Models\Penumpang  $penumpang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Penumpang $penumpang)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'user_id' => 'unique:users',
+            'tanggal_berangkat' => 'required|date',
+            'kereta_id' => 'required',
+            'jumlah_penumpang' => 'required',
+            'kelas' => 'required',
+        ], ['kereta_id.required' => 'Armada Harus Di isi!.',
+            'jumlah_penumpang.required' => 'Jumlah Penumpang Harus Di isi!.',
+            'kelas.required' => 'Kelas Harus Di isi!.']);
+
+        $penumpang = Penumpang::findOrFail($id);
+        $penumpang->user_id = auth()->user()->id;
+        $penumpang->tanggal_berangkat = $request->tanggal_berangkat;
+        $penumpang->kereta_id = $request->kereta_id;
+        $penumpang->jumlah_penumpang = $request->jumlah_penumpang;
+        $penumpang->kelas = $request->kelas;
+
+        // Menjumlahkan data dari penumpang ke tabel lain
+        $kereta = Kereta::findOrFail($request->kereta_id);
+        $penumpang->total = $kereta->harga * $request->jumlah_penumpang;
+        $penumpang->save();
+
+        return view('layouts.penumpang.show', compact('penumpang'));
     }
 
     /**

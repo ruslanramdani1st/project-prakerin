@@ -15,7 +15,7 @@ class AsalController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Asal Berangkat',
+            'massage' => 'Data Semua Asal Berangkat',
             'data' => $asal,
         ], 200);
     }
@@ -37,7 +37,7 @@ class AsalController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Asal Berangkat',
+            'massage' => 'Data Store Asal Berangkat',
             'data' => $asal,
         ], 200);
     }
@@ -49,21 +49,21 @@ class AsalController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Asal Berangkat',
+            'massage' => 'Data Asal Berangkat',
             'data' => $asal,
         ], 200);
     }
 
     public function edit($id)
     {
-        // $asal = Asal::findOrFail($id);
+        $asal = Asal::findOrFail($id);
 
-        //  // make response JSON
-        //  return response()->json([
-        //     'success' => true,
-        //     'massage' => 'List Asal Berangkat',
-        //     'data' => $asal,
-        // ], 200);
+         // make response JSON
+         return response()->json([
+            'success' => true,
+            'massage' => 'Data Edit Asal Berangkat',
+            'data' => $asal,
+        ], 200);
     }
 
     public function update(Request $request, $id)
@@ -75,7 +75,7 @@ class AsalController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Ubah Data Asal Berangkat',
+            'massage' => 'Data Update Data Asal Berangkat',
             'data' => $asal,
         ], 200);
     }
@@ -88,7 +88,7 @@ class AsalController extends Controller
         // make response JSON
         return response()->json([
             'success' => true,
-            'massage' => 'List Hapus Data Asal Berangkat',
+            'massage' => 'Data Hapus Data Asal Berangkat',
             'data' => $asal,
         ], 200);
     }

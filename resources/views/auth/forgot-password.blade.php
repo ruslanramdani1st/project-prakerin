@@ -1,3 +1,7 @@
+<head>
+    <link rel="icon" type="image/x-icon" href="{{asset('img/keretaapi.png')}}" />
+    <title>DudeLoka</title>
+</head>
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -5,13 +9,13 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('Lupa kata sandi Anda? Tidak masalah. Cukup beri tahu kami alamat email Anda dan kami akan mengirim email kepada Anda tautan pengaturan ulang kata sandi yang memungkinkan Anda memilih yang baru.') }}
         </div>
 
         @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
+        <div class="mb-4 font-medium text-sm text-green-600">
+            {{ session('status') }}
+        </div>
         @endif
 
         <x-jet-validation-errors class="mb-4" />
@@ -26,7 +30,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <x-jet-button>
-                    {{ __('Email Password Reset Link') }}
+                    {{ __('Tautan Atur Ulang Kata Sandi Email') }}
                 </x-jet-button>
             </div>
         </form>
