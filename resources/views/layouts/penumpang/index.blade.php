@@ -21,8 +21,8 @@ DudeLoka
                             <th scope="col">Armada</th>
                             <th scope="col">Kota Asal</th>
                             <th scope="col">Tujuan</th>
-                            <th scope="col">Pesan</th>
-                            <th scope="col">Hapus Tiket</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,15 +34,14 @@ DudeLoka
                             <td>{{$data->kereta->nama_kereta}} <br> ({{$data->kereta->nomor_polisi}})</td>
                             <td>{{$data->kereta->asal->kota_asal}}</td>
                             <td>{{$data->kereta->tujuan->kota_tujuan}}</td>
-                            <td>
-                                <a href="{{ route('penumpang.show', $data->id)}}" class="btn btn-success float-right">PESAN</a>
-                            </td>
+                            <td>@currency($data->total),-</td>
                             <td>
                                 <form action="{{route('penumpang.destroy', $data->id)}}" method="post">
                                     @method('delete')
                                     @csrf
+                                    <a href="{{ route('penumpang.show', $data->id)}}" class="btn btn-success float-right">PESAN</a>
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin menghapus ini?');">
-                                        <i class="fa fa-trash" aria-hidden="true"> Hapus </i>
+                                        HAPUS
                                     </button>
                                 </form>
                             </td>
