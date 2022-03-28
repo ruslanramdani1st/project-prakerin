@@ -48,7 +48,7 @@ class TransaksiController extends Controller
             'bank_pengirim' => 'required',
             'bank_tujuan' => 'required',
             'nama_rekening' => 'required|string|max:50',
-            'nomor_rekening' => 'required',
+            'nomor_rekening' => 'required|max:10',
             'jumlah_transfer' => 'required',
             'bukti_pembayaran' => 'required|image|file|max:2048',
         ], ['bank_pengirim.required' => 'Bank Pengirim Harus Di isi!.',
